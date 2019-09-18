@@ -57,7 +57,7 @@ module.exports = {
         let year1 = req.params.year1;
         let year2 = req.params.year2;
 
-        Movie.find({}).where('year').gte(year1).where('year').lte(year2).exec(function (err, movie) {
+        Movie.find({}).where('year').gte(year2).where('year').lte(year1).exec(function (err, movie) {
             if (err) return res.status(400).json(err);
             if (!movie) return res.status(404).json();
             res.json(movie);
