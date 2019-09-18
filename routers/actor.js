@@ -3,15 +3,13 @@ const Actor = require('../models/actor');
 const Movie = require('../models/movie');
 module.exports = {
     getAll: function (req, res) {
-        Actor.find(function (err, actors) {
-            if (err) {
-                return res.status(404).json(err);
-            } else {
-                res.json(actors);
-            }
-        })
+        Movie.find(function (err, movies) {
+            if (err) return res.status(400).json(err);
+            res.json(movies);
+        }).populate('actors');
+
     },
-    createOne: function (req, res) {
+        createOne: function (req, res) {
         let newActorDetails = req.body;
         newActorDetails._id = new mongoose.Types.ObjectId();
         let actor = new Actor(newActorDetails);

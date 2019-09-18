@@ -1,6 +1,7 @@
 var Actor = require('../models/actor');
 var Movie = require('../models/movie');
 const mongoose = require('mongoose');
+
 module.exports = {
     getAll: function (req, res) {
         Movie.find(function (err, movies) {
@@ -8,6 +9,7 @@ module.exports = {
             res.json(movies);
         }).populate('actors');
     },
+
     createOne: function (req, res) {
         let newMovieDetails = req.body;
         newMovieDetails._id = new mongoose.Types.ObjectId();
@@ -84,7 +86,7 @@ module.exports = {
     },
 
     incrementYear: function(req, res){
-        Movie.updateMany({"year": {$gt: 1995}}, {$inc: {year: 5}}, function (err, doc) {
+        Movie.updateMany({"year": {$gt: 1995}}, {$inc: {year: 7}}, function (err, doc) {
             if (err) return res.status(400).json(err);
             res.json({"msg": "Movie year incremented"});
         });
