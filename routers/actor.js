@@ -9,7 +9,7 @@ module.exports = {
             } else {
                 res.json(actors);
             }
-        }).populate('movies');
+        })
     },
     createOne: function (req, res) {
         let newActorDetails = req.body;
@@ -18,6 +18,7 @@ module.exports = {
         actor.save(function (err) {
             res.json(actor);
         });
+        
     },
     getOne: function (req, res) {
         Actor.findOne({ _id: req.params.id })
